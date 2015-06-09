@@ -14,5 +14,10 @@ namespace BankingKata
             var other = @object as Money;
             return other != null && _amount == other._amount;
         }
+
+        public override string ToString()
+        {
+            return _amount.ToString("0.00");
+        }
     }
 }

@@ -31,5 +31,11 @@ namespace BankingKataTests
             object hat = new {shape = "bowler"};
             Assert.That(money.Equals(hat), Is.False);
         }
+
+        [Test]
+        public void ToStringConvertsTheDecimalValueToAString()
+        {
+            Assert.That(new Money(4m).ToString(), Is.EqualTo("4.00"));
+        }
     }
 }
