@@ -11,7 +11,8 @@ namespace BankingKata
 
         public override bool Equals(object obj)
         {
-            return true;
+            var other = (Money) obj;
+            return _amount == other._amount;
         }
     }
 }
