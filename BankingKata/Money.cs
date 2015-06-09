@@ -25,5 +25,12 @@ namespace BankingKata
             var amount2 = other._amount;
             return new Money(amount1 + amount2);
         }
+        
+        public static Money operator -(Money @this, Money other)
+        {
+            var amount1 = @this._amount;
+            var amount2 = other._amount;
+            return new Money(amount1 - amount2);
+        }
     }
 }

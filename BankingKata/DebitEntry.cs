@@ -11,7 +11,7 @@
 
         public Money ApplyTo(Money balance)
         {
-            return balance;
+            return balance - _amount;
         }
 
         public override bool Equals(object obj)
