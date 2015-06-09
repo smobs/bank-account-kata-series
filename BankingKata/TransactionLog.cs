@@ -21,13 +21,6 @@ namespace BankingKata
         }
     }
 
-
-    interface ITransactionGobbler
-    {
-        void Consume(Money m);
-        Money Total();
-    }
-
     public interface ILedger
     {
         void Record(Transaction transaction);
