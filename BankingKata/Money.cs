@@ -2,8 +2,16 @@ namespace BankingKata
 {
     public class Money
     {
-        public Money(decimal @decimal)
+        private readonly decimal _amount;
+
+        public Money(decimal amount)
         {
+            _amount = amount;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return true;
         }
     }
 }
