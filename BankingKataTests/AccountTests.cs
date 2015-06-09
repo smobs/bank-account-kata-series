@@ -30,5 +30,19 @@ namespace BankingKataTests
 
             ledger.Received().Total();
         }
+
+        [Test]
+        public void LedgerTotalIsReturnedByCalculate()
+        {
+            var expectedBalance = new Money(13m);
+            var ledger = Substitute.For<ILedger>();
+            ledger.Total().Returns(expectedBalance);
+            var account = new Account(ledger);
+
+            var actualBalance = account.CalculateBalance();
+
+            Assert.That(actualBalance, Is.EqualTo(expectedBalance));
+        }
+
     }
 }
