@@ -14,5 +14,10 @@
             var transaction = (obj as Transaction);
             return transaction != null && _amount.Equals(transaction._amount);
         }
+
+        public Money ApplyTo(Money balance)
+        {
+            return balance + _amount;
+        }
     }
 }
