@@ -23,5 +23,13 @@ namespace BankingKataTests
 
             Assert.That(money1, Is.Not.EqualTo(money2));
         }
+
+        [Test]
+        public void MoneyIsntEqualToHats()
+        {
+            var money = new Money(3m);
+            object hat = new {shape = "bowler"};
+            Assert.That(money.Equals(hat), Is.False);
+        }
     }
 }

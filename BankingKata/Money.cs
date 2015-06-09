@@ -9,10 +9,10 @@ namespace BankingKata
             _amount = amount;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object @object)
         {
-            var other = (Money) obj;
-            return _amount == other._amount;
+            var other = @object as Money;
+            return other != null && _amount == other._amount;
         }
     }
 }
