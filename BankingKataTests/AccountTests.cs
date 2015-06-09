@@ -19,5 +19,16 @@ namespace BankingKataTests
             Transaction deposit = new Transaction(money);
             ledger.Received().Record(deposit);
         }
+
+        [Test]
+        public void CalculateBalanceTotalsAllDepositsMadeToTheAccount()
+        {
+            var ledger = Substitute.For<ILedger>();
+            var account = new Account(ledger);
+
+            account.CalculateBalance();
+
+            ledger.Received().Total();
+        }
     }
 }

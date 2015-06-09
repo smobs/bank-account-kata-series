@@ -21,7 +21,7 @@ namespace BankingKata
 
         public Money CalculateBalance()
         {
-            return new Money(0m);
+            return _transactionLog.Total();
         }
     }
 }

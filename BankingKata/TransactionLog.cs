@@ -4,12 +4,18 @@ namespace BankingKata
     {
         public void Record(Transaction transaction)
         {
-            throw new System.NotImplementedException();
+
+        }
+
+        public Money Total()
+        {
+            return new Money(0m);
         }
     }
 
     public interface ILedger
     {
         void Record(Transaction transaction);
+        Money Total();
     }
 }
