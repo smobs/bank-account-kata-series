@@ -20,8 +20,8 @@ namespace BankingKataTests
         {
             var transactionLog = new TransactionLog();
 
-            transactionLog.Record(new Transaction(new Money(1m)));
-            transactionLog.Record(new Transaction(new Money(3m)));
+            transactionLog.Record(new CreditEntry(new Money(1m)));
+            transactionLog.Record(new CreditEntry(new Money(3m)));
             
             var actualTotal = transactionLog.Total();
             

@@ -15,7 +15,7 @@ namespace BankingKata
 
         public void Deposit(Money money)
         {
-            var depositTransaction = new Transaction(money);
+            var depositTransaction = new CreditEntry(money);
             _transactionLog.Record(depositTransaction);
         }
 

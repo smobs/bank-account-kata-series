@@ -16,7 +16,7 @@ namespace BankingKataTests
             
             account.Deposit(money);
 
-            Transaction deposit = new Transaction(money);
+            CreditEntry deposit = new CreditEntry(money);
             ledger.Received().Record(deposit);
         }
 

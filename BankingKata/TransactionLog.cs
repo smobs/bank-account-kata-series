@@ -7,23 +7,23 @@ namespace BankingKata
 {
     public class TransactionLog : ILedger
     {
-        private readonly ICollection<Transaction> _transactions = new List<Transaction>();
+        private readonly ICollection<ILedgerEntry> _transactions = new List<ILedgerEntry>();
 
-        public void Record(Transaction transaction)
+        public void Record(ILedgerEntry ledgerEntry)
         {
-            _transactions.Add(transaction);
+            _transactions.Add(ledgerEntry);
         }
 
         public Money Total()
         {
-            Func<Money, Transaction, Money> totallingStepFunction = (balance, transaction) => transaction.ApplyTo(balance);
+            Func<Money, ILedgerEntry, Money> totallingStepFunction = (balance, transaction) => transaction.ApplyTo(balance);
             return _transactions.Aggregate(new Money(0m), totallingStepFunction);
         }
     }
 
     public interface ILedger
     {
-        void Record(Transaction transaction);
+        void Record(ILedgerEntry ledgerEntry);
         Money Total();
     }
 }
