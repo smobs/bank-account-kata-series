@@ -23,5 +23,9 @@ namespace BankingKata
         {
             return _transactionLog.Total();
         }
+
+        public void Withdraw(Money money)
+        {
+        }
     }
 }
