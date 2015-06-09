@@ -12,12 +12,24 @@ namespace BankingKataTests
         {
             var ledger = Substitute.For<ILedger>();
             var money = new Money(3m);
-            Account account = new Account(ledger);
+            var account = new Account(ledger);
             
             account.Deposit(money);
 
             CreditEntry deposit = new CreditEntry(money);
             ledger.Received().Record(deposit);
+        }
+        [Test]
+        public void AccountRecordsWithdrawalInTransactionLog()
+        {
+            var ledger = Substitute.For<ILedger>();
+            var money = new Money(3m);
+            var account = new Account(ledger);
+
+            account.Withdraw(money);
+
+            var debitEntry = new DebitEntry(money);
+            ledger.Received().Record(debitEntry);
         }
 
         [Test]
@@ -43,6 +55,5 @@ namespace BankingKataTests
 
             Assert.That(actualBalance, Is.EqualTo(expectedBalance));
         }
-
     }
 }
