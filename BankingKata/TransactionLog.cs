@@ -16,7 +16,8 @@ namespace BankingKata
 
         public Money Total()
         {
-            return _transactions.Aggregate(new Money(0m), (balance, transaction) => transaction.ApplyTo(balance));
+            Func<Money, Transaction, Money> totallingStepFunction = (balance, transaction) => transaction.ApplyTo(balance);
+            return _transactions.Aggregate(new Money(0m), totallingStepFunction);
         }
     }
 
