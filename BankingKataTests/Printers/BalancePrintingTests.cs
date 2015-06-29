@@ -43,5 +43,18 @@ namespace BankingKataTests.Printers
 
             mockAccount.Received().CalculateBalance();
         }
+
+        [Test]
+        public void ReturnsBalanceOfInnerAccount()
+        {
+            var expectedBalance = new Money(13m);
+            var mockAccount = Substitute.For<IAccount>();
+            mockAccount.CalculateBalance().Returns(expectedBalance);
+            var balancePrintingAccount = new BalancePrintingAccount(mockAccount, new StringWriter());
+           
+            var actualBalance = balancePrintingAccount.CalculateBalance();
+
+            Assert.That(actualBalance, Is.EqualTo(expectedBalance));
+        }
     }
 }
