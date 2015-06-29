@@ -29,7 +29,7 @@ namespace BankingKata.Printers
 
         public void Withdraw(Money amount)
         {
-
+            _account.Withdraw(amount);
         }
     }
 }
