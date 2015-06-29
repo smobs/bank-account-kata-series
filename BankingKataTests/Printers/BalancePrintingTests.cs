@@ -32,5 +32,16 @@ namespace BankingKataTests.Printers
 
             mockAccount.Received().Withdraw(withdrawAmount);
         }
+
+        [Test]
+        public void CallsToCalculateBalanceAreDelegatedToInnerAccount()
+        {
+            var mockAccount = Substitute.For<IAccount>();
+            var balancePrintingAccount = new BalancePrintingAccount(mockAccount, new StringWriter());
+
+            balancePrintingAccount.CalculateBalance();
+
+            mockAccount.Received().CalculateBalance();
+        }
     }
 }

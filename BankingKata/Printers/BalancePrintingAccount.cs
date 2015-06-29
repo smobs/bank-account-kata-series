@@ -24,6 +24,7 @@ namespace BankingKata.Printers
 
         public Money CalculateBalance()
         {
+            _account.CalculateBalance();
             return new Money(2m);
         }
 
