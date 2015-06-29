@@ -19,7 +19,7 @@ namespace BankingKata.Printers
 
         public void Deposit(Money amount)
         {
-         
+            _account.Deposit(amount);
         }
 
         public Money CalculateBalance()
