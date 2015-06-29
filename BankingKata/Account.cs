@@ -1,6 +1,6 @@
 namespace BankingKata
 {
-    public class Account
+    public class Account : IAccount
     {
         private readonly ILedger _transactionLog;
 
@@ -13,9 +13,9 @@ namespace BankingKata
         {
         }
 
-        public void Deposit(Money money)
+        public void Deposit(Money amount)
         {
-            var depositTransaction = new CreditEntry(money);
+            var depositTransaction = new CreditEntry(amount);
             _transactionLog.Record(depositTransaction);
         }
 
@@ -24,9 +24,9 @@ namespace BankingKata
             return _transactionLog.Accept(new BalanceCalculatingVisitor(), new Money(0m));
         }
 
-        public void Withdraw(Money money)
+        public void Withdraw(Money amount)
         {
-            var debitEntry = new DebitEntry(money);
+            var debitEntry = new DebitEntry(amount);
             _transactionLog.Record(debitEntry);
         }
     }
