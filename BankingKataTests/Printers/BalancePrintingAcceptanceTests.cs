@@ -13,13 +13,15 @@ namespace BankingKataTests.Printers
         public void PositiveBalancesArePrinted()
         {
             var stringWriter = new StringWriter();
-            var printer = new BalancePrintingAccount(new Account(), stringWriter);
+            var moneyFormatter = new MoneyFormatter();
+            var printer = new MoneyPrinter(stringWriter, moneyFormatter);
+            var account = new BalancePrintingAccount(new Account(), printer);
 
-            printer.Deposit(new Money(123m));
-            printer.Deposit(new Money(234m));
-            printer.Withdraw(new Money(12m));
+            account.Deposit(new Money(123m));
+            account.Deposit(new Money(234m));
+            account.Withdraw(new Money(12m));
             
-            printer.CalculateBalance();
+            account.CalculateBalance();
 
             Assert.That(stringWriter.ToString(), Is.EqualTo("Balance: £345.00"));
         }

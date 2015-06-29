@@ -1,14 +1,13 @@
 ﻿using System;
-using System.IO;
 
 namespace BankingKata.Printers
 {
     public class BalancePrintingAccount : IAccount
     {
         private readonly IAccount _account;
-        private readonly TextWriter _printer;
+        private readonly MoneyPrinter _printer;
 
-        public BalancePrintingAccount(IAccount account, TextWriter printer)
+        public BalancePrintingAccount(IAccount account, MoneyPrinter printer)
         {
             if (account == null) throw new ArgumentNullException("account");
             if (printer == null) throw new ArgumentNullException("printer");
@@ -24,7 +23,7 @@ namespace BankingKata.Printers
 
         public Money CalculateBalance()
         {
-            _printer.WriteLine("Balance: £13.00");
+            _printer.Print(new Money(165m));
             return _account.CalculateBalance();
         }
 
