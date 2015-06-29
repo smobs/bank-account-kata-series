@@ -56,5 +56,19 @@ namespace BankingKataTests.Printers
 
             Assert.That(actualBalance, Is.EqualTo(expectedBalance));
         }
+
+        [Test]
+        public void BalanceIsPrintedToTheTextWriter()
+        {
+            var expectedBalance = new Money(13m);
+            var mockAccount = Substitute.For<IAccount>();
+            mockAccount.CalculateBalance().Returns(expectedBalance);
+            var stringWriter = new StringWriter();
+            var balancePrintingAccount = new BalancePrintingAccount(mockAccount, stringWriter);
+
+            balancePrintingAccount.CalculateBalance();
+            
+            Assert.That(stringWriter.ToString(), Is.EqualTo("Balance: £13.00\r\n"));
+        }
     }
 }

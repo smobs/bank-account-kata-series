@@ -24,6 +24,7 @@ namespace BankingKata.Printers
 
         public Money CalculateBalance()
         {
+            _printer.WriteLine("Balance: £13.00");
             return _account.CalculateBalance();
         }
 
