@@ -89,5 +89,23 @@ namespace BankingKataTests
             var expected = "Last transaction: 13 Jul 2015 (£123.00)";
             Assert.That(output.ToString(), Is.EqualTo(expected));
         }
+
+        [Test]
+        public void ChequeWithdrawalIsPrinted()
+        {
+            var account = new Account();
+            var debitEntry = new Cheque(101010, new DateTime(2015, 07, 13), new Money(123m));
+            account.Withdraw(debitEntry);
+
+            var stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
+
+            IPrinter printer = new ConsolePrinter();
+            account.PrintLastTransaction(printer);
+
+            var output = stringWriter.GetStringBuilder();
+            var expected = "Last transaction: CHQ 101010 13 Jul 15 (£123.00)";
+            Assert.That(output.ToString(), Is.EqualTo(expected));
+        }
     }
 }

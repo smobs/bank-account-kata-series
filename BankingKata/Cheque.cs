@@ -4,11 +4,16 @@ namespace BankingKata
 {
     public class Cheque : DebitEntry
     {
-        private readonly int _chequeNumber;
+        private readonly string _transactionFormatString;
 
-        public Cheque(int chequeNumber, DateTime transactionDate, Money amount) : base(transactionDate, amount)
+        public Cheque(int chequeNumber, DateTime transactionDate, Money transactionAmount) : base(transactionDate, transactionAmount)
         {
-            _chequeNumber = chequeNumber;
+            _transactionFormatString = string.Format("CHQ {0} {1} ({2})", chequeNumber, transactionDate.ToString("dd MMM yy"), transactionAmount);
+        }
+
+        public override string ToString()
+        {
+            return _transactionFormatString;
         }
     }
 }
