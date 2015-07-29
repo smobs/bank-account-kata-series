@@ -2,12 +2,12 @@
 
 namespace BankingKata
 {
-    public class DebitEntry : ITransaction
+    public abstract class DebitEntry : ITransaction
     {
         private readonly DateTime transactionDate;
         private readonly Money transactionAmount;
 
-        public DebitEntry(DateTime transactionDate, Money transactionAmount)
+        protected DebitEntry(DateTime transactionDate, Money transactionAmount)
         {
             this.transactionDate = transactionDate;
             this.transactionAmount = transactionAmount;
@@ -22,11 +22,6 @@ namespace BankingKata
         {
             var transaction = (obj as DebitEntry);
             return transaction != null && transactionAmount.Equals(transaction.transactionAmount);
-        }
-
-        public override string ToString()
-        {
-            return string.Format("{0} ({1})", transactionDate.ToString("dd MMM yyyy"), transactionAmount);
         }
     }
 }

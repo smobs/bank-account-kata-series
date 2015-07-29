@@ -23,7 +23,7 @@ namespace BankingKataTests
         {
             var account = new Account();
             account.Deposit(DateTime.Now, new Money(6m));
-            var debitEntry = new DebitEntry(DateTime.Now, new Money(2m));
+            var debitEntry = new CashWithdrawal(DateTime.Now, new Money(2m));
             account.Withdraw(debitEntry);
 
             var expectedBalance = new Money(4m);
