@@ -86,7 +86,7 @@ namespace BankingKataTests
             account.PrintLastTransaction(printer);
 
             var output = stringWriter.GetStringBuilder();
-            var expected = "Last transaction: 13 Jul 2015 (£123.00)";
+            var expected = "Last transaction: ATM 13 Jul 15 (£123.00)";
             Assert.That(output.ToString(), Is.EqualTo(expected));
         }
 

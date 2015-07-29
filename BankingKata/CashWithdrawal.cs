@@ -8,7 +8,7 @@ namespace BankingKata
 
         public CashWithdrawal(DateTime transactionDate, Money transactionAmount) : base(transactionDate, transactionAmount)
         {
-            _transactionFormatString = string.Format("{0} ({1})", transactionDate.ToString("dd MMM yyyy"), transactionAmount);
+            _transactionFormatString = string.Format("ATM {0} ({1})", transactionDate.ToString("dd MMM yy"), transactionAmount);
         }
 
         public override string ToString()
