@@ -18,10 +18,9 @@ namespace BankingKata
             return balance - transactionAmount;
         }
 
-        public override bool Equals(object obj)
+        public override string ToString()
         {
-            var transaction = (obj as DebitEntry);
-            return transaction != null && transactionAmount.Equals(transaction.transactionAmount);
+            return string.Format("{0} ({1})", transactionDate.ToString("dd MMM yy"), transactionAmount);
         }
     }
 }
