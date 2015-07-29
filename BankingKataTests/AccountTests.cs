@@ -28,9 +28,9 @@ namespace BankingKataTests
             var money = new Money(3m);
             var account = new Account(ledger);
 
-            account.Withdraw(DateTime.Now, money);
-
             var debitEntry = new DebitEntry(DateTime.Now, money);
+            account.Withdraw(debitEntry);
+
             ledger.Received().Record(debitEntry);
         }
 

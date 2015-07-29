@@ -23,7 +23,20 @@ namespace BankingKataTests
         {
             var account = new Account();
             account.Deposit(DateTime.Now, new Money(6m));
-            account.Withdraw(DateTime.Now, new Money(2m));
+            var debitEntry = new DebitEntry(DateTime.Now, new Money(2m));
+            account.Withdraw(debitEntry);
+
+            var expectedBalance = new Money(4m);
+            Assert.That(account.CalculateBalance(), Is.EqualTo(expectedBalance));
+        }
+
+        [Test]
+        public void WithdrawingAChequeDecreasesTheAccountBalance()
+        {
+            var account = new Account();
+            account.Deposit(DateTime.Now, new Money(6m));
+            var cheque = new Cheque(100011, DateTime.Now, new Money(2m));
+            account.Withdraw(cheque);
 
             var expectedBalance = new Money(4m);
             Assert.That(account.CalculateBalance(), Is.EqualTo(expectedBalance));
