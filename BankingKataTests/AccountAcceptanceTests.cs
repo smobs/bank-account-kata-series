@@ -43,4 +43,9 @@ namespace BankingKataTests
             Assert.That(account.CalculateBalance(), Is.EqualTo(expectedBalance));
         }
     }
+
+    public class BalanceCalculationTest
+    {
+        
+    }
 }
