@@ -29,5 +29,18 @@ namespace BankingKataTests
             var expectedBalance = new Money(4m);
             Assert.That(account.CalculateBalance(), Is.EqualTo(expectedBalance));
         }
+
+        [Test]
+        public void BalanceIsUnchangedIfWithdrawalExceedsUnarrangedOverdraft()
+        {
+            var account = new Account();
+            var exceedOverdraftAmount = new Money(1001m);
+
+            var debitEntry = new ATMDebitEntry(DateTime.Now, exceedOverdraftAmount);
+            account.Withdraw(debitEntry);
+
+            var expectedBalance = new Money(0m);
+            Assert.That(account.CalculateBalance(), Is.EqualTo(expectedBalance));
+        }
     }
 }

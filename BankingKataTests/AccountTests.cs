@@ -55,7 +55,7 @@ namespace BankingKataTests
 
             account.CalculateBalance();
 
-            ledger.Received().Accept(Arg.Any<BalanceCalculatingVisitor>(), new Money(0m));
+            ledger.Received().Accept(Arg.Any<ITransactionVisitor<Money>>(), new Money(0m));
         }
 
         [Test]
@@ -63,7 +63,7 @@ namespace BankingKataTests
         {
             var expectedBalance = new Money(13m);
             var ledger = Substitute.For<ILedger>();
-            ledger.Accept(Arg.Any<BalanceCalculatingVisitor>(), new Money(0m)).Returns(expectedBalance);
+            ledger.Accept(Arg.Any<ITransactionVisitor<Money>>(), new Money(0m)).Returns(expectedBalance);
             var account = new Account(ledger);
 
             var actualBalance = account.CalculateBalance();
