@@ -22,7 +22,7 @@ namespace BankingKata
 
         private class LastTransactionVisitor : ITransactionVisitor<ITransaction>
         {
-            public ITransaction Visit(ITransaction currentTransaction, ITransaction argument)
+            public ITransaction Visit(ITransaction currentTransaction, ITransaction balance)
             {
                 return currentTransaction;
             }
