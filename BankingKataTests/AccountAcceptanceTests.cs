@@ -42,10 +42,19 @@ namespace BankingKataTests
             var expectedBalance = new Money(0m);
             Assert.That(account.CalculateBalance(), Is.EqualTo(expectedBalance));
         }
-    }
 
-    public class BalanceCalculationTest
-    {
-        
+        [Test]
+        public void BalanceDecreasesByTheChargeAmountIfWithdrawalExceedsAgreedOverdraft()
+        {
+            var account = new Account();
+            var nearOverdraftLimitAmount = new Money(999m);
+
+            var debitEntry = new ATMDebitEntry(DateTime.Now, nearOverdraftLimitAmount);
+            account.Withdraw(debitEntry);
+
+            Money overdraftFee = new Money(30);
+            var expectedBalance = new Money(0m) - nearOverdraftLimitAmount - overdraftFee;
+            Assert.That(account.CalculateBalance(), Is.EqualTo(expectedBalance));
+        }
     }
 }

@@ -24,7 +24,7 @@ namespace BankingKata
 
         public Money CalculateBalance()
         {
-            return _ledger.Accept(new UnarrangedOverdraftCalculator(new BalanceCalculatingVisitor()), new Money(0m));
+            return _ledger.Accept(new ArrangedOverdraftCalculator(new UnarrangedOverdraftCalculator(new BalanceCalculatingVisitor())), new Money(0m));
         }
 
         public void Withdraw(DebitEntry debitEntry)
